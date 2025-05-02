@@ -196,7 +196,7 @@ markdown_extensions:
   - abbr                      # support for abbreviation files which are similar to reference links
   # - admonition              # (!) deprecated by pymdownx.blocks.admonition
   - attr_list                 # allow addition of HTML and CSS to markdown ![](image.png){align:left}
-  # - def_list                # enable the use of definition list
+  - def_list                  # enable the use of definition list
   - footnotes                 # allow footnotes in a page using[^1] and then [^1]: footnote text
   - md_in_html                # allow md in html for grid /!\ require attr_listDd
   - pymdownx.arithmatex:      # preserve LaTeX math equations /!\ require extra_javascript file
@@ -229,6 +229,7 @@ markdown_extensions:
         - abbreviations.md    # -- abbreviations
         - reference_links.md  # -- reference links 
       base_path:              # - search paths for snippets files that are included (or automatically appended)
+        - docs
         - includes
       check_paths: true       # - check snippet file paths
   - pymdownx.striphtml        # sanitize rendered html by striping JavaScript, tags, attributes, etc.
@@ -264,7 +265,8 @@ nav:
   - Blog: https://blog.midtown.ai/
   - Projects:
     - Projects: index.md
-    - Python: python/index.md
+    - Python:
+      - python/index.md
     - Pytorch: pytorch/index.md
     - Seaborn: seaborn/index.md
     - DeepRacer: deepracer/index.md
@@ -276,6 +278,7 @@ nav:
 # Remove warnings for the following pages if not in the navigation
 #
 # not_in_nav: |
+#   python/quick_review.md
 #   /forms/donation.md
 
 
