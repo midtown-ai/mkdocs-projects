@@ -118,6 +118,21 @@ for name, age in zip(names, ages):
 
 ```
 
+```python
+# Zip vs map
+# Zip is more readable
+# map() stops at the shortest iterable, just like ip()
+# map() version is slightly slower and more awkward!
+a = [1, 2, 3]
+b = ['a', 'b', 'c']
+
+z1 = list(zip(a, b))
+z2 = list(map(lambda *args: args, a, b))
+
+print(z1)  # [(1, 'a'), (2, 'b'), (3, 'c')]
+print(z2)  # [(1, 'a'), (2, 'b'), (3, 'c')]
+```
+
 ### Introspection
 
 ```

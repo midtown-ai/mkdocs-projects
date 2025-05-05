@@ -18,7 +18,8 @@ def main(argv):
     argument_1 = argv[1]
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":     # when you run the python file, __name__ is set to "__main__"
+                               # Otherwise it is set to the module name
     main(sys.argv)
 ```
 
@@ -75,7 +76,7 @@ ret_list = list(map(lambda x: x**2, x_values_list))
 >>> sorted(_list)                                 # sort list items based on the first value in the 
 [('a', 34), ('b', 44), ('z', 23)]
 
-# Sort based on 2nd field of tuple ~~~> reverse tuple
+# (DEPRECATED) Sort based on 2nd field of tuple ~~~> reverse tuple
 >>> _list = sorted(list(map(lambda el: el[::-1], _list)))
 
 # >>> el_values_list = _list                                            # Those 2 lines ... 
@@ -83,6 +84,16 @@ ret_list = list(map(lambda x: x**2, x_values_list))
 
 >>> sorted(_list)                              # Sort the elements of a list... using the first value in each element! 
 [(23, 'z'), (34, 'a'), (44, 'b')]
+```
+
+```python {title="Sorting list of tuples using the 2 element of each tuple"}
+data = [("apple", 3), ("banana", 1), ("cherry", 2)]
+
+# Sort by second element (index 1)
+sorted_data = sorted(data, key=lambda x: x[1])
+
+print(sorted_data)
+# Output: [('banana', 1), ('cherry', 2), ('apple', 3)]
 ```
 
 ```python {title="List comprehension"}
@@ -98,26 +109,51 @@ def myfunc(self, *args, **kwargs) :    # args is a tuple, kwargs is a dict
 ```
 
 ```python {title="Getting help"}
-dir(int)                     # dir (<class>)
+import my_module as mm
+help(mm)                     # print the docstring of the module + of functions
+help(mm.greet)               # print the docstring of the given function in the module
+help(WHATEVER)               # <== prints docstrings
+help()                       # <== help in interactive mode
+
+help(dir)
+dir()                        # List variables/names in the current scope
+dir(int)                     # dir (<class>) --> list methods of <class>
 help(int.to_bytes)           # help ( <class>.<method> )
+dir(WHATEVER)                <== returns a list of variables in scope of methods
 
 assert 3/4 > 1, "not so fast!"  # raise AssertionError with explanation
 help(assert)                 # Fails, assert is a statement, not a function, i.e. assert()!
 help(assert.__doc__)         # Fails 
-help('assert')               # help for the standalone command 'assert'
+help('assert')               # Works! help for the standalone command 'assert'
 
 
 help(str)                    # return info for method and class for 'str' objects
 help(str.__doc__)            # ok, works, but not formatted correctly
 print(str.__doc__)           # print the help for the 'str' type conversion function
 
-import my_module as mm
-help(mm)                     # print the docstring of the module + of functions
-help(mm.greet)               # print the docstring of the given function in the module
-
 <!> If module was already loaded, you need to reload it!
 import importlib
 importlib.reload(my_module)  # or .reload(mm)
+```
+
+```python {title="Primer with doctests"}
+# To run if testmod block is not present: python -m doctest your_file.py
+# Python will automatically scan the file for docstring tests and run them.
+def add(a, b):
+    """
+    Returns the sum of a and b.
+
+    >>> add(2, 3)
+    5
+    >>> add(-1, 1)
+    0
+    """
+    return a + b
+
+# To run the tests (with testmod() block ): python calculator.py
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
 ```
 
 ```python {title="Primer with Python debugger"}

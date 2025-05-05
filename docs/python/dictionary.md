@@ -61,10 +61,11 @@ False
 >>> d.get('c','toto') == 'toto'
 True
 
->>> d.setdefault('toto', 2)           # Same as g.get('toto', 2) that is returns the dict value, but will update the dictionary in place
->>> d.setdefault('titi')              # Here the default value is None + update dictionary, same as d.setdefault('titi', None)
+>>> val = d.setdefault('toto', 2)           # Same as g.get('toto', 2) that is returns the dict value, but will update the dictionary in place
+>>> val = d.setdefault('titi')              # Here the default value is None + update dictionary, same as d.setdefault('titi', None)
+>>> d.setdefault('items', []).append(42)    # Great usage to init dict entries on the fly, with liss or sets!
 >>> d.setdefault('tata', {'sub': 1} ) # Can be a complex default value!
->>> d.setdefault('l', []).append(2)   # will creaete the ey/value pair if does not exist and append 2 to it <!> can fail if 'l' is different from a list!
+>>> d.setdefault('l', []).append(2)   # will creaete the key/value pair if does not exist and append 2 to it <!> can fail if 'l' is different from a list!
 
 >>> d['l2'] = d['l']                  # <!> not a copy of the list, but a reference to it!
 >>> d['l2'].append(3)                 # append 3 to both list !!!!!
@@ -348,6 +349,29 @@ switch_example(2)  # Output: Two
 ```
 
 ### json.load vs eval
+
+```jso
+
+# data.json
+{
+  "name": "Alice",
+  "age": 30,
+  "is_student": false
+}
+```
+```python
+import json
+
+# Open and read the JSON file
+with open('data.json', 'r') as file:
+    data = json.load(file)
+
+# Use the parsed data
+print(data['name'])       # Output: Alice
+print(data['age'])        # Output: 30
+print(data['is_student']) # Output: False
+```
+
 
  * string of a dict to dict
  * source  @ https://stackoverflow.com/questions/988228/convert-a-string-representation-of-a-dictionary-to-a-dictionary

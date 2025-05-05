@@ -439,7 +439,6 @@ with open("myfile", r) as file:
         print(line.rstrip())                        # Here we remove the \n from the string, but add the one from the print!
 
 for word in string.split():                         # Process words one at a time (split on spaces)
-    print word,                                     # (Python2) Print without final carriage return \n !
     print(word, end='')                             # (Python3)
 ```
 
@@ -447,8 +446,9 @@ REGEX overkill!
 
 ```
 # Using regex module!
->>> re.split('\W+', 'Words, words, words.')
-['Words', 'words', 'words', '']
+import re
+words = re.split('\W+', 'Words1, words2, words3.')   # \W+ matches **one or more non-word characters**
+print(words)               # Outputs ['Words', 'words', 'words', '']
 ```
 
 ### __Str__ method of Classes/Objects
@@ -478,15 +478,13 @@ More @ https://docs.python.org/2/library/string.html
 
 #!/usr/bin/env python
 
-# word = raw_input('PLease enter your word to be translated')   # python 2
 word = input("Enter a word: ")                          # python 3
-print(word[1:] + word[0] + 'ay')                              # python2 or 3 ?
+print(word[1:] + word[0] + 'ay')
 ```
 
 ### user input
 
 ```
-# language = raw_input('Enter language')        # Python2
 language = input('Enter language')              # Python3 
 if language in ['C++', 'Python', 'Java']:
    print(language, "rocks!")

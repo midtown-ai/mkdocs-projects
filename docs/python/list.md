@@ -13,7 +13,13 @@ title: Python Fundamentals > List
 
 /// Warning | How do you copy a list?
 
-You do NOT copy a list with 'list_0 = list_1', but with  'list0 = list1[:]'
+You do NOT copy a list with 'list_0 = list_1', but with  'list0 = list1[:]' for shallow copies and 
+
+```
+import copy
+
+lst = [[1, 2], [3, 4]]       # A list of mutable elements!
+deep = copy.deepcopy(lst)    # An entirely different copy
 ///
 
 ```python
@@ -69,16 +75,17 @@ True
 >>> l1
 [1, 2, 3, 4, [3, 4]]
 
->>> l1.insert(0,"Yes")              # Insert at the beginning of the list
+>>> l1.insert(0,"Yes")              # In-place insert at the beginning of the list ~ pre-pend!
+                                    # The opposite of append!
 >>> l1[0]
 Yes
->>> l1                              # Note that insert does NOT replace!
+>>> l1                              # Note that insert does NOT replace! (unlike l[0] = 'No' would!)
 ['Yes', 1, 2, 3, 4, [3, 4]]]
 
 >>> a = 5
 >>> l3 = [1, 2, 3]
 >>> [a] + l3                        # Insert at the beginning with '+'
-                                    # Almost same as .extend, except the original list are not changed in place!
+                                    # Almost same as .extend, except the original list is not changed in place!
 [5, 1, 2, 3]
 ```
 ```
@@ -108,7 +115,7 @@ True
 >>> my_list.remove('super')         # remove the FIRST 'super' entry from the list
 >>> my_list = [x for x in my_list if x != 'super']  # remove all the 'super' entry
 
->>> my_list.extend(another_list)    # contact the 2 lists like the + operation
+>>> my_list.extend(another_list)    # contact the 2 lists like the + operation, but my_list is changed in place!
 
 >>> my_list.extend(another_list)      # contact the 2 lists like the + operation and change in place my_list !
 >>> my_list = my_list + another_list  # same as above
@@ -215,7 +222,10 @@ print(list1)
 
 ### map : Operation on every element of a list
 
- . <!> map can be done with a list comprehension as seen below!
+ * map() is used to execute a function on all the element of a list
+ * map() can also be used to work on multiple lists at once (list zip())
+ * if map() is using only one list as input, it can be done with a list comprehension!
+ * :warning: the output of map(...) is a map and not a list!
 
 ```
 l = list(range(9))                  # Python3: Turn the iterator-like range into a list

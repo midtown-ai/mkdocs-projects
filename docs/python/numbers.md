@@ -39,7 +39,22 @@ More About (im)mutability @ https://towardsdatascience.com/https-towardsdatascie
 
 ```python
 5 / 2 == 2.5                        # Python 3 only !
-5 // 2 == 2                         # Python 3 only (round) !
+5 // 2 == 2                         # Python 3 only (equivalent to floor) !
+math.floor(5/2)        # rounds down towards -oo --> outputs 2
+math.floor(-5/2)       # Outputs -3     
+math.ceil(5/2)         # rounds up towards +oo --> Outputs 3
+math.ceil(-5/2)        # rounds up towards +oo --> Outputs -2 
+round(5/2)        # rounds towards 0? NO, round half (.5) to closest even --> Outputs 2 (rounds down)
+round(-5/2)       # Outputs -2  <-- round is symetric and round up and down (to avoid bias)
+round(7/2)        # Outputs 4 (rounds up!)
+round(-7/2)       # Outputs -4
+int(3.7)          # outputs 3  <-- always round towards 0!
+int(-3.7)         # outputs -3
+math.trunc(3.7)   # equivalent to int(3.7)
+
+# Function Returning Multiple Values (Tuple)
+def divide(a: int, b: int) -> tuple[int, int]:   # Takes two integers, returns a tuple of int
+    return a // b, a % b                         # // and % work together!
 
 
 import math

@@ -38,6 +38,29 @@ Decorator
 my_function = my_decorator(my_function)
 ```
 
+<dfn id="Deep Copy"></dfn>
+Deep Copy 
+
+: A deep copy duplicates not just the outer object (like a list), but also all the nested mutable objects inside it. In contrast, a [shallow copy](#shallow copy) only duplicates the outer container — the inner elements are still references to the same objects.
+```python
+import copy
+
+original = [[1, 2], [3, 4]]
+
+shallow = copy.copy(original)   # Could also be original[:] if original is a sequence
+                                # or original.copy() if object supports it (lists, dicts, sets only)
+                                # copy.copy is for any object that supports it!
+deep = copy.deepcopy(original)
+
+# Change an inner value
+original[0][0] = 99
+
+print("Original:", original)   # [[99, 2], [3, 4]]
+print("Shallow:", shallow)     # [[99, 2], [3, 4]] — changed!
+print("Deep:", deep)           # [[1, 2], [3, 4]] — unchanged ✅
+```
+
+
 <dfn id="Global Interpreter Lock"></dfn>
 Global Interpreter Lock (GIL)
 
@@ -169,6 +192,11 @@ x = "hello"
 y = "hello"
 print(id(x) == id(y))  # ✅ True (Python reuses string literals)
 ```
+
+<dfn id="Shallow Copy"></dfn>
+Shallow Copy
+
+: A shallow copy only duplicates the outer container — the inner elements are still references to the same objects. In contrast, a [deep copy](#deep copy) duplicates not just the outer object (like a list), but also all the nested mutable objects inside it.
 
 <dfn id="Thread"></dfn>
 Thread
