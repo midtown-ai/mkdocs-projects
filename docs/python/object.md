@@ -2,6 +2,7 @@ title: Intermediate Python > Object
 ---
 
 --8<-- [start:body]
+## Object
 
 ```python
 class Vector2D:
