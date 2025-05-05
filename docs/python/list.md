@@ -15,11 +15,13 @@ title: Python Fundamentals > List
 
 You do NOT copy a list with 'list_0 = list_1', but with  'list0 = list1[:]' for shallow copies and 
 
-```
+```python
 import copy
 
 lst = [[1, 2], [3, 4]]       # A list of mutable elements!
 deep = copy.deepcopy(lst)    # An entirely different copy
+```
+
 ///
 
 ```python
